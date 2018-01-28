@@ -11,15 +11,9 @@ from selenium import webdriver
 from splinter import Browser
 import time
 
-# def init_browser():
-#     # @NOTE: Replace the path with your actual path to the chromedriver
-#     executable_path = {"executable_path": "../chromedriver"}
-#     return Browser("chrome", **executable_path, headless=False)
-
 
 def scrape():
-    browser = init_browser()
-
+    
 
     # Import HTML Code
     html = urllib.request.urlopen('https://mars.nasa.gov/news/').read()
@@ -30,16 +24,15 @@ def scrape():
     news_title = soup.find_all('div', class_='content_title')
     for title in news_title:
         news_tit = title.text.strip()
-        mars.update({'newsTitle': news_tit})
+    mars.update({'newsTitle': news_tit})
 
     # Print all paragraph texts
     news_p = soup.find_all('div', class_='rollover_description_inner')
     for p in news_p:
         text = p.text.strip()
-        mars.update({'newsText': text})
+    mars.update({'newsText': text})
 
     # Import Splinter and set the chromedriver path
-    from splinter import Browser
     executable_path = {"executable_path": "./chromedriver"}
     browser = Browser("chrome", **executable_path, headless=False)
 
@@ -51,12 +44,12 @@ def scrape():
     articles = soup.find('a', class_ = 'button fancybox')
     browser.click_link_by_partial_text('FULL')
     xpath = '//*[@id="fancybox-lock"]/div/div[1]/img'
-    sleep.time(2)
+    time.sleep(2)
     # to bring up the full resolution image
     results = browser.find_by_xpath(xpath)
     img = results['src']
     mars.update({'featuredImage': img})
-    sleep.time(2)
+    time.sleep(2)
     # Mars Weather
     html = urllib.request.urlopen('https://twitter.com/marswxreport?lang=en').read()
     soup = bs(html, 'html.parser')
@@ -79,7 +72,6 @@ def scrape():
     for fact, value in fact_value:
         mars[fact] = value
     # Import Splinter and set the chromedriver path
-    from splinter import Browser
     executable_path = {"executable_path": "./chromedriver"}
     browser = Browser("chrome", **executable_path, headless=False)
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -92,15 +84,14 @@ def scrape():
     hemispheres = ["Cerberus","Schiaparelli","Syrtis","Valles"]
     for hemisphere in hemispheres:
         browser.click_link_by_partial_text(hemisphere) 
-        sleep.time(2)
+        time.sleep(2)
         html = browser.html
         soup = bs(html, 'html.parser')
         img = soup.find("div", class_="downloads").ul.li.a["href"]
-        text = soup.body.find('h2').text
-        mars.update({text:img})
+        #text = soup.body.find('h2').text
+        mars.update({hemisphere:img})
         browser.click_link_by_partial_text('Back')
-        sleep.time(2)
-
+    time.sleep(2)
 
     return mars
 

@@ -60,17 +60,7 @@ def scrape():
     # Import HTML Code
     url = 'https://space-facts.com/mars/'
     tables = pd.read_html(url)
-    tables[0]
-    df = tables[0]
-    df.columns = ['variable','measurements']
-    fact_list = df["variable"]
-    value_list = df["measurements"]
-    fact_value = zip(fact_list, value_list)
-    table_dic = {}
-    for fact, value in fact_value:
-        table_dic[fact] = value
-    for fact, value in fact_value:
-        mars[fact] = value
+    mars.update({'marsFacts': tables})
     # Import Splinter and set the chromedriver path
     executable_path = {"executable_path": "./chromedriver"}
     browser = Browser("chrome", **executable_path, headless=False)

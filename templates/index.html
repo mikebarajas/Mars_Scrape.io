@@ -1,42 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Welcome to Mars</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
+  <head>
 
-<body>
-  <div clas="container">
-    <div class="jumbotron text-center">
-      <h1>Mars- The Red Planet</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Mars</a></p>
-    </div>
-      
-    <!-- surf data -->
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h3>Mars News</h3>
-        <p>{{ mars.newsTitle }}</p>
-        <p>{{ mars.newsText }}</p>
-        <h3>Mars Weather</h3>
-        <p>{{ mars.marsWeather }}</p>
-        <h3>Mars Hemisperes</h3>
-        <p> Cerberus</p>
-        <a> href=({{ mars.Cerberus }})</a>
-        <img alt="Cerberus" src={{ mars.Cerberus }}>
-        <a>{{ mars.Schiaparelli}}</a>
-        <a>{{ mars.Syrtis}}</a>
-        <a>{{ mars.Valles}}</a>
-        <h3>Mars News</h3>
-        <p>{{ mars.newsTitle }}</p>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mars Web Scrape</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+    <!-- Navigation -->
+    <a class="menu-toggle rounded" href="#">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a class="js-scroll-trigger" href="#page-top">Close Nav Bar</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#news">News</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#jpl">Latest JPL Image</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#weather">Weather</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#facts">Facts</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#hemispheres">Hemispheres</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead d-flex">
+      <div class="container text-center my-auto">
+        <h1 class="mb-1">Mars</h1>
+        <h3 class="mb-5">
+          <em>The Red Planet</em>
+        </h3>
+        <a class="btn btn-dark btn-xl js-scroll-trigger btn-bloc" href="/scrape">Scrape Data</a>
       </div>
-    </div>
-  </div>
+      <div class="overlay"></div>
+    </header>
 
-</body>
+    <!-- Mars News -->
+    <section class="content-section bg-light" id="news">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h2>Latest NASA Mars News</h2>
+            <h3>{{ mars.newsTitle }}</h3>
+
+            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#jpl">Featured JPL Image</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JPL Image -->
+    <section class="content-section bg-dark text-white text-center" id="jpl">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h2>Featured NASA JPL Image of Mars</h2>
+            <img alt="JPL" src={{ mars.featuredImage }}>
+            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#weather">Mars Weather</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mars Weather -->
+    <section class="callout" id="weather">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h2>Latest Mars Weather Report</h2>
+            <h3>{{ mars.marsWether }}</h3>
+            <p class="lead mb-5">{{ mars.newsText }}</p>
+            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#facts">Mars Facts</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mars Facts -->
+    <section class="content-section bg-dark text-white text-center" id="facts">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h2>Mars Facts</h2>
+            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#hemisperes">Hemispheres of Mars</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hemispheres of Mars -->
+    <section class="content-section" id="hemispheres">
+      <div class="container">
+        <div class="content-section-heading text-center">
+          <h2 class="text-secondary mb-10">Hemispheres of Mars</h2>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Cerberus</h2>
+                  <p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+                </span>
+              </span>
+              <img class="img-fluid" alt="Cerberus" src={{ mars.Cerberus }}>
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Schiaparelli</h2>
+                  <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
+                </span>
+              </span>
+              <img class="img-fluid" alt="Schiaparelli" src={{ mars.Schiaparelli }}>
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Syrtis</h2>
+                  <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+                </span>
+              </span>
+              <img class="img-fluid" alt="Syrtis" src={{ mars.Syrtis }}>
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Valles</h2>
+                  <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+                </span>
+              </span>
+              <img class="img-fluid" alt="Valles" src={{ mars.Valles }}>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Map -->
+    <section id="contact" class="map">
+      <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://marstrek.jpl.nasa.gov/"></iframe>
+      <br/>
+      <small>
+        <a href="https://marstrek.jpl.nasa.gov/"></a>
+      </small>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <div class="container">
+        <ul class="list-inline mb-5">
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="#">
+              <i class="icon-social-facebook"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="#">
+              <i class="icon-social-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white" href="#">
+              <i class="icon-social-github"></i>
+            </a>
+          </li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright &copy; Your Website 2017</p>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/static/js/stylish-portfolio.min.js"></script>
+
+  </body>
+
 </html>
-
